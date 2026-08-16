@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#071526" />
+    <title>Skycast — Live Weather</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="shell">
+      <header class="topbar">
+        <a class="brand" href="#" aria-label="Skycast home"><span>✦</span>skycast</a>
+        <form class="search-form" id="search-form">
+          <label class="search-box" for="city-search">
+            <span aria-hidden="true">⌕</span>
+            <input id="city-search" type="search" placeholder="Search city or airport" autocomplete="off" />
+          </label>
+          <button class="search-button" type="submit">Search</button>
+        </form>
+        <button id="location-button" class="location-button" type="button" title="Use my location">◎ <span>My location</span></button>
+      </header>
+
+      <section class="hero" id="hero" aria-live="polite">
+        <div class="hero-copy">
+          <p class="eyebrow" id="local-time">LOADING LOCAL TIME</p>
+          <h1 id="place-name">Finding your weather…</h1>
+          <p class="date-line" id="date-line">Please wait a moment</p>
+          <div class="temperature"><span id="temperature">--</span><sup>°C</sup></div>
+          <p class="condition" id="condition">Loading current conditions</p>
+          <p class="feels-like">Feels like <strong id="feels-like">--°</strong></p>
+        </div>
+        <div class="hero-weather" aria-hidden="true">
+          <div class="orb orb-one"></div><div class="orb orb-two"></div><div class="orb orb-three"></div>
+          <div class="weather-icon" id="weather-icon">☀</div>
+          <p id="weather-detail">Clear skies</p>
+        </div>
+      </section>
+
+      <section class="metrics" aria-label="Current weather details">
+        <article><span class="metric-icon">◒</span><div><p>Humidity</p><strong id="humidity">--%</strong></div></article>
+        <article><span class="metric-icon">↝</span><div><p>Wind</p><strong id="wind">-- km/h</strong></div></article>
+        <article><span class="metric-icon">◉</span><div><p>UV index</p><strong id="uv-index">--</strong></div></article>
+        <article><span class="metric-icon">◌</span><div><p>Visibility</p><strong id="visibility">-- km</strong></div></article>
+      </section>
+
+      <section class="forecast-section">
+        <div class="section-heading"><div><p class="eyebrow">OUTLOOK</p><h2>Today’s forecast</h2></div><p class="updated" id="updated">Updating…</p></div>
+        <div class="hourly" id="hourly-forecast" aria-label="Hourly forecast"></div>
+      </section>
+
+      <section class="forecast-section weekly-section">
+        <div class="section-heading"><div><p class="eyebrow">NEXT DAYS</p><h2>7-day forecast</h2></div><button id="unit-toggle" class="unit-toggle" type="button">°C / °F</button></div>
+        <div class="daily" id="daily-forecast" aria-label="Seven day forecast"></div>
+      </section>
+    </main>
+
+    <template id="hour-template"><article class="hour-card"><p class="hour-time"></p><span class="hour-icon"></span><strong class="hour-temp"></strong><p class="hour-rain"></p></article></template>
+    <template id="day-template"><article class="day-row"><p class="day-name"></p><span class="day-icon"></span><p class="day-condition"></p><div class="range"><span class="range-track"><i></i></span></div><p class="day-low"></p><strong class="day-high"></strong></article></template>
+    <p class="error-message" id="error-message" role="alert" hidden></p>
+    <script src="app.js"></script>
+  </body>
+</html>
